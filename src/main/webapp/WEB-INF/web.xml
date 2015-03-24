@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
+
+	<!-- Servlets -->
+	<!-- <servlet> <servlet-name>greetServlet</servlet-name> <servlet-class>cn.edu.zju.webcube.server.GreetingServiceImpl</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>greetServlet</servlet-name> <url-pattern>/webcube/greet</url-pattern> 
+		</servlet-mapping> -->
+
+	<servlet>
+		<servlet-name>HiveLoginServiceImpl</servlet-name>
+		<servlet-class>cn.edu.zju.webcube.server.HiveLoginServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>HiveLoginServiceImpl</servlet-name>
+		<url-pattern>/webcube/login</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>HiveTableListServiceImpl</servlet-name>
+		<servlet-class>cn.edu.zju.webcube.server.HiveTableListServiceImpl</servlet-class>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>HiveTableListServiceImpl</servlet-name>
+		<url-pattern>/webcube/tablelist</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>HiveCubeListServiceImpl</servlet-name>
+		<servlet-class>cn.edu.zju.webcube.server.HiveCubeListServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>HiveCubeListServiceImpl</servlet-name>
+		<url-pattern>/webcube/cubelist</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>HiveQueryServiceImpl</servlet-name>
+		<servlet-class>cn.edu.zju.webcube.server.HiveQueryServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>HiveQueryServiceImpl</servlet-name>
+		<url-pattern>/webcube/query</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DataCubeServlet</servlet-name>
+		<servlet-class>cn.edu.zju.webcube.server.DataCubeServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DataCubeServlet</servlet-name>
+		<url-pattern>/webcube/datacube</url-pattern>
+	</servlet-mapping>
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>WebCube.html</welcome-file>
+	</welcome-file-list>
+
+
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>log4j.properties</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>configLocation</param-name>
+		<param-value>config.properties</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>cubeMata</param-name>
+		<param-value>cubeMeta.dat</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>cn.edu.zju.webcube.server.listener.ConfigListener</listener-class>
+	</listener>
+
+</web-app>
