@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import org.apache.commons.dbcp.BasicDataSource;
 
 import cn.edu.zju.webcube.server.utils.Props;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.security.UserGroupInformation;
 
 public class DataSourceUtils {
 
@@ -62,6 +64,23 @@ public class DataSourceUtils {
         private HiveBasicDataSource(String host, String port, String dbName,
                                     String user, String password, String numConnections) {
             super();
+			Configuration conf = new Configuration();
+			conf.setBoolean("hadoop.security.authorization", true);
+			conf.set("hadoop.security.authentication", "kerberos");
+
+			Props p = Props.getInstance();
+			HashMap<String, String> props = p.get_current();
+			String principle = props.get("principle");
+			String path = props.get("path");
+
+			UserGroupInformation.setConfiguration(conf);
+			try {
+				UserGroupInformation.loginUserFromKeytab(principle, path);
+			}
+			catch (java.io.IOException e) {
+				e.printStackTrace();
+			}
+			// String url="jdbc:hive2://inspur116.photo.163.org:10000/default;principal=hive/app-20.photo.163.org@HADOOP.HZ.NETEASE.COM?mapred.job.queue.name=intern";
             String url = "jdbc:hive2://" + (host + ":" + port + "/" + dbName);
             System.out.println(url);
             addConnectionProperty("useUnicode", "yes");
