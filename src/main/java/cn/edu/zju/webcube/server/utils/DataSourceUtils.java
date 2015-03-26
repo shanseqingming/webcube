@@ -71,17 +71,17 @@ public class DataSourceUtils {
 			Props p = Props.getInstance();
 			HashMap<String, String> props = p.get_current();
 			String principle = props.get("principle");
-			String path = props.get("path");
+			String keytabName = props.get("keytabName");
 
 			UserGroupInformation.setConfiguration(conf);
 			try {
-				UserGroupInformation.loginUserFromKeytab(principle, path);
+				UserGroupInformation.loginUserFromKeytab(principle, ClassLoader.getSystemResource(keytabName).getPath());
 			}
 			catch (java.io.IOException e) {
 				e.printStackTrace();
 			}
-			// String url="jdbc:hive2://inspur116.photo.163.org:10000/default;principal=hive/app-20.photo.163.org@HADOOP.HZ.NETEASE.COM?mapred.job.queue.name=intern";
-            String url = "jdbc:hive2://" + (host + ":" + port + "/" + dbName);
+	    // String url="jdbc:hive2://inspur116.photo.163.org:10000/default;principal=hive/app-20.photo.163.org@HADOOP.HZ.NETEASE.COM?mapred.job.queue.name=intern";
+            String url = "jdbc:hive2://" + (host + ":" + port + "/" + dbName) + ";principal=hive/app-20.photo.163.org@HADOOP.HZ.NETEASE.COM?mapred.job.queue.name=default"";
             System.out.println(url);
             addConnectionProperty("useUnicode", "yes");
             addConnectionProperty("characterEncoding", "UTF-8");
