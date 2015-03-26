@@ -34,6 +34,12 @@ public class HiveTableLoader extends BasicJdbcLoader {
 
 		try {
 			conn = this.getDBConnection(false);
+			if(conn == null){
+				logger.error("no conn!");
+			}
+			else{
+				logger.info("normal conn!");
+			}
 			tableStmt = conn.createStatement();
 			descStmt = conn.createStatement();
 			tableRes = tableStmt.executeQuery(sql);
