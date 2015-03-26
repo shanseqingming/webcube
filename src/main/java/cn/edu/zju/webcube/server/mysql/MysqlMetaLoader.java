@@ -27,12 +27,12 @@ public class MysqlMetaLoader extends BasicJdbcLoader {
 
 
 	public HashMap<String, CubeManager> getAllCubeMeta() {
-		HashMap<String, CubeManager> cubeBuffer = new HashMap<>();
+		HashMap<String, CubeManager> cubeBuffer = new HashMap<String, CubeManager>();
 		try {
 			Connection conn = this.getDBConnection(true);
 			QueryRunner queryRunner = this.createQueryRunner();
 			cubeBuffer = queryRunner.query(conn, FetchAllCubeMetaHandler.QUERY_ALL_CUBE_MATA, new FetchAllCubeMetaHandler());
-		} catch (IOException | SQLException e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 
@@ -46,7 +46,7 @@ public class MysqlMetaLoader extends BasicJdbcLoader {
 			Connection conn = this.getDBConnection(true);
 			QueryRunner queryRunner = this.createQueryRunner();
 			cube = queryRunner.query(conn, FetchCubeMetaHandler.QUERY_CUBE_MATA, new FetchCubeMetaHandler(), cubeId);
-		} catch (IOException | SQLException e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 		return cube;
@@ -62,7 +62,7 @@ public class MysqlMetaLoader extends BasicJdbcLoader {
 			queryRunner.update(conn, INSERT_CUBE_META, cube.getID(), cubeStr);
 
 
-		} catch (SQLException | IOException e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 	}
@@ -73,7 +73,7 @@ public class MysqlMetaLoader extends BasicJdbcLoader {
 
 		@Override
 		public HashMap<String, CubeManager> handle(ResultSet rs) throws SQLException {
-			HashMap<String, CubeManager> buffer = new HashMap<>();
+			HashMap<String, CubeManager> buffer = new HashMap<String, CubeManager>();
 
 			if (!rs.next()) {
 				return buffer;

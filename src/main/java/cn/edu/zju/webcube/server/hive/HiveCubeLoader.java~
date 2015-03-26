@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
 public class HiveCubeLoader extends BasicJdbcLoader {
 
 	private static final Logger logger = Logger.getLogger(HiveCubeLoader.class);
-	public static ArrayList<ColumnValueView> dimensionbuffer = new ArrayList<ColumnValueView>();
+	public static ArrayList<ColumnValueView> dimensionbuffer = new ArrayList<>();
 	private MysqlMetaLoader metaLoader = new MysqlMetaLoader("mysql");
 
 	public HiveCubeLoader(String databaseType) {
@@ -46,7 +46,7 @@ public class HiveCubeLoader extends BasicJdbcLoader {
 			stmt.executeUpdate(sql);
 			metaLoader.saveCubeBuffer(cube); //save the meta to mysql
 			
-		} catch (Exception e) {
+		} catch (SQLException | IOException e) {
 			logger.error(e.getMessage());
 
 		} finally {
@@ -60,7 +60,7 @@ public class HiveCubeLoader extends BasicJdbcLoader {
 
 	public ArrayList<CubeManager> getAllCubes(){
 		HashMap<String, CubeManager> cubeBuffer = metaLoader.getAllCubeMeta();
-		ArrayList<CubeManager> cubes = new ArrayList<CubeManager>();
+		ArrayList<CubeManager> cubes = new ArrayList<>();
 
 		for(String key: cubeBuffer.keySet()) {
 			cubes.add(cubeBuffer.get(key));
@@ -165,7 +165,7 @@ public class HiveCubeLoader extends BasicJdbcLoader {
 		for (ColumnValueView cvv : dimensionbuffer) {
 			System.out.print("column name "+cvv.column.getName()+"\n");
 			if (cvv.column.compare(columnName)) {
-				sublist = new ArrayList<String>();
+				sublist = new ArrayList<>();
 				valueList = cvv.values;
 				for(int i = offset; i< valueList.size() && i<offset + count; i++) {
 					sublist.add(valueList.get(i));
@@ -185,10 +185,10 @@ public class HiveCubeLoader extends BasicJdbcLoader {
 	
 	public ArrayList<CubeResult> queryCubePlus(String cubeID, ArrayList<Column> groupColumn, ArrayList<Column> aggColumn) {
 		
-		ArrayList<CubeResult> results = new ArrayList<CubeResult>();
+		ArrayList<CubeResult> results = new ArrayList<>();
 		
-		ArrayList<Column> groups1 = new ArrayList<Column>();
-		ArrayList<Column> groups2 = new ArrayList<Column>();
+		ArrayList<Column> groups1 = new ArrayList<>();
+		ArrayList<Column> groups2 = new ArrayList<>();
 		groups1.add(groupColumn.get(0));
 		groups2.add(groupColumn.get(1));
 		

@@ -18,7 +18,7 @@ public class HiveCubeListServiceImpl extends RemoteServiceServlet implements Hiv
 	@Override
 	public ArrayList<String> getCubeList() throws IllegalArgumentException {
 		
-		ArrayList<String> cubeStr = new ArrayList<>();
+		ArrayList<String> cubeStr = new ArrayList<String>();
 
 		for(CubeManager cube : new HiveCubeLoader("hive").getAllCubes()) {
 			cubeStr.add(new CubeInfoMessage(cube).serialize());

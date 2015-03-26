@@ -15,13 +15,19 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  */
 @SuppressWarnings("serial")
 public class HiveTableListServiceImpl extends RemoteServiceServlet implements HiveTableListService{
+
 	@Override
 	public ArrayList<String> getTableList()
 			throws IllegalArgumentException {
 		ArrayList<String> result = new ArrayList<>();
+
 		for(Table t : new HiveTableLoader("hive").queryAllTable()) {
 			result.add(new TableInfoMessage(t).serialize());
 		}
+
+
+
+
 		return result;
 	}
 }

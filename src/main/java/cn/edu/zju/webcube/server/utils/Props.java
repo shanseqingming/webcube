@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class Props {
 
-	private HashMap<String, String> _current = new HashMap<>();
+	private HashMap<String, String> _current = new HashMap<String, String>();
 	private static Props instance = null;
 	private static final Logger log = Logger.getLogger(Props.class);
 	public static String CUBE_META_FILE_LOCATION = "";
