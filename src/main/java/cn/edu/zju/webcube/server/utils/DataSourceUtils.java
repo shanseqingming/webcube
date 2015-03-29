@@ -75,13 +75,14 @@ public class DataSourceUtils {
 
 			UserGroupInformation.setConfiguration(conf);
 			try {
-				UserGroupInformation.loginUserFromKeytab(principle, ClassLoader.getSystemResource(keytabName).getPath());
+				//UserGroupInformation.loginUserFromKeytab(principle, ClassLoader.getSystemResource(keytabName).getPath());
+			          UserGroupInformation.loginUserFromKeytab("intern/bigdata@HADOOP.HZ.NETEASE.COM","/home/timeline/webcube/webcube/src/main/resources/intern.keytab");
 			}
 			catch (java.io.IOException e) {
 				e.printStackTrace();
 			}
 	    // String url="jdbc:hive2://inspur116.photo.163.org:10000/default;principal=hive/app-20.photo.163.org@HADOOP.HZ.NETEASE.COM?mapred.job.queue.name=intern";
-            String url = "jdbc:hive2://" + (host + ":" + port + "/" + dbName) + ";principal=hive/app-20.photo.163.org@HADOOP.HZ.NETEASE.COM?mapred.job.queue.name=intern";
+            String url = "jdbc:hive2://" + host + ":" + port + "/" + dbName + ";principal=hive/app-20.photo.163.org@HADOOP.HZ.NETEASE.COM?mapred.job.queue.name=intern";
             System.out.println(url);
             addConnectionProperty("useUnicode", "yes");
             addConnectionProperty("characterEncoding", "UTF-8");
