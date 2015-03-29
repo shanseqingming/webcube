@@ -18,7 +18,7 @@ public class HiveTableListServiceImpl extends RemoteServiceServlet implements Hi
 	@Override
 	public ArrayList<String> getTableList()
 			throws IllegalArgumentException {
-		ArrayList<String> result = new ArrayList<>();
+		ArrayList<String> result = new ArrayList<String>();
 		for(Table t : new HiveTableLoader("hive").queryAllTable()) {
 			result.add(new TableInfoMessage(t).serialize());
 		}

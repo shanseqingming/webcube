@@ -81,7 +81,7 @@ public class DataSourceUtils {
 				e.printStackTrace();
 			}
 	    // String url="jdbc:hive2://inspur116.photo.163.org:10000/default;principal=hive/app-20.photo.163.org@HADOOP.HZ.NETEASE.COM?mapred.job.queue.name=intern";
-            String url = "jdbc:hive2://" + (host + ":" + port + "/" + dbName) + ";principal=hive/app-20.photo.163.org@HADOOP.HZ.NETEASE.COM?mapred.job.queue.name=default";
+            String url = "jdbc:hive2://" + (host + ":" + port + "/" + dbName) + ";principal=hive/app-20.photo.163.org@HADOOP.HZ.NETEASE.COM?mapred.job.queue.name=intern";
             System.out.println(url);
             addConnectionProperty("useUnicode", "yes");
             addConnectionProperty("characterEncoding", "UTF-8");
@@ -98,7 +98,7 @@ public class DataSourceUtils {
             return "hive";
         }
 
-	    @Override
+	
 	    public Logger getParentLogger() throws SQLFeatureNotSupportedException {
 		    return null;
 	    }
@@ -125,7 +125,7 @@ public class DataSourceUtils {
 			return "mysql";
 		}
 
-		@Override
+		
 		public Logger getParentLogger() throws SQLFeatureNotSupportedException {
 			return null;
 		}
