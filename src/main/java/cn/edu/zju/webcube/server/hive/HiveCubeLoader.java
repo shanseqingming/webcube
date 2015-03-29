@@ -43,6 +43,7 @@ public class HiveCubeLoader extends BasicJdbcLoader {
 		try {
 			conn = getDBConnection(false);
 			stmt = conn.createStatement();
+			stmt.executeQuery("use test4");
 			stmt.executeUpdate(sql);
 			metaLoader.saveCubeBuffer(cube); //save the meta to mysql
 			
@@ -108,6 +109,7 @@ public class HiveCubeLoader extends BasicJdbcLoader {
 		try {			
 			conn = this.getDBConnection(false);
 			stmt = conn.createStatement();
+			stmt.executeQuery("use test4");
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				value = rs.getString(1);
@@ -354,6 +356,7 @@ public class HiveCubeLoader extends BasicJdbcLoader {
 		try {			
 			conn = this.getDBConnection(false);
 			stmt = conn.createStatement();
+			stmt.executeQuery("use test4");
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {

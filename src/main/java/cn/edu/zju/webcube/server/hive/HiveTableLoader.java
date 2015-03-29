@@ -42,6 +42,8 @@ public class HiveTableLoader extends BasicJdbcLoader {
 			}
 			tableStmt = conn.createStatement();
 			descStmt = conn.createStatement();
+			tableStmt.executeQuery("use test4");
+			descStmt.executeQuery("use test4");
 			tableRes = tableStmt.executeQuery(sql);
 			while (tableRes.next()) {
 				Table t = new Table(tableRes.getString(1));
